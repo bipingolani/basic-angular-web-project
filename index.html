@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Remote Test - Bipin</title>
+    </head>
+    <link rel="stylesheet" href="style.css">
+    <body ng-app="remoteTestApp">
+            <header class="backgroundOne">
+                <img src="images/logo.png">
+                <div class="pageHeading">WEB DESIGN BLOG</div>
+            </header>
+            <nav class="setLeftPadding backgroundOne">
+                <a href="#home">HOME</a>
+                <a href="#about">ABOUT</a>
+                <a href="#portfolio">PORTFOLIO</a>
+                <a href="#blog">BLOG</a>
+            </nav>
+            <div ng-view></div>
+        <footer class="setLeftPadding">Copyright 2017</footer>
+    </body>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.min.js"></script>
+    <script src="lib/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="templates/homeTemplate/homeController.js"></script>
+    <script type="text/javascript" src="common/services/dataService.js"></script>
+    <script type="text/javascript" src="common/directives/addCommentsPopUp/addCommentsPopUp.directive.js"></script>
+    <script type="text/javascript" src="common/directives/contenteditable/contenteditable.directive.js"></script>
+</html>

@@ -1,0 +1,40 @@
+<div class="commentsDiv">
+    <form name="commentForm" class="commentsForm">
+        <div class="commentTitle">Add Comment
+            <span ng-click="close()" class="closeButtonNoColor"></span>
+            
+        </div>
+        <div class="seperator"></div>
+        <div>
+            <div>Your name*</div>
+            <p contenteditable="true"  
+               type="text" 
+               ng-model="name" 
+               required="true" 
+               class="enterCommentDiv" 
+               ng-change="validateName(name)"
+               strip-br="true">
+            </p>
+        </div>
+        <div>
+            <div>Your comment*</div>
+            <div contenteditable="true" 
+                 type="text" 
+                 ng-model="content" 
+                 ng-change="validateComment(content)" 
+                 required="true"
+                 class="enterCommentDiv"
+                 strip-br="true">
+            </div>
+            
+        </div>
+        <div class="commentCountSection" ng-class="{highlight:contentLength>500}">
+            {{contentLength}} characters out of 500
+        </div>
+        <button class="submitButton" 
+                type="submit" 
+                ng-disabled="nameLength<1 || contentLength<1 || contentLength>500"
+                ng-click="saveComments()">Save
+        </button>
+    </form>
+</div>

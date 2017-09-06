@@ -1,0 +1,46 @@
+<div class="homeSection" ng-if="!templateList || templateList.length===0" ng-cloak>
+    <section>
+        SORRY, THERE IS NOT DATA TO DISPLAY. Please check logs for error.
+    </section>
+</div>
+{{HC}}
+<div class="homeSection" ng-if="templateList.length>0" ng-cloak>
+    <section ng-repeat="template in templateList" ng-init="parentIndex = $index">
+        <div class="setIconPosition">
+            <span ng-class="getLikeButtonClass($index,'UP')" ng-click="increaseLike($index)"></span>
+            <span ng-bind="template.likeCount" class="likeCountClass" max="10" min="0" ></span>
+            <span  ng-class="getLikeButtonClass($index,'DOWN')" ng-click="decreaseLike($index)"></span>
+        </div>
+        <article class="setLeftPadding mainContentArticle">
+            <div class="contentHeader">{{template.heading}}</div>
+            <div ng-bind="template.text"></div>
+            <div ng-if="template.tags.length>0">
+                <span ng-bind="tag" ng-repeat="tag in template.tags" class="tagClass"></span>
+            </div>
+            <div>
+                <button ng-class="{buttonOne:$index%2===0, buttonSecond:$index%2===1}"
+                        ng-click="showPopUpFunc($index,undefined)">COMMENT</button>
+            </div>
+            <div ng-if="template.comments.length>0" ng-repeat="comment in template.comments track by $index">
+                <div class="commentHeader" ng-bind-html="comment.name"></div>
+                <div ng-bind-html="comment.content"></div>
+                <div class="editCommentSection">
+                    <span class="editCommentButtonSection">
+                        <button ng-class="{buttonOne:parentIndex%2===0, buttonSecond:parentIndex%2===1}"
+                                ng-click="showPopUpFunc(parentIndex,$index)">EDIT</button>
+                        <button ng-class="{buttonOne:parentIndex%2===0, buttonSecond:parentIndex%2===1}"
+                                ng-click="removeComment(parentIndex,$index)">DELETE</button>
+                    </span>
+                </div>
+                <div ng-if="!$last" class="seperator"></div>
+            </div>
+        </article>
+    </section>
+    <add-comments-pop-up 
+                         ng-if="showPopUp" 
+                         template-index="{{templateIndex}}" 
+                         comment-index="{{commentIndex}}"
+                         callback="closePopup()">
+    </add-comments-pop-up>
+    
+</div>
